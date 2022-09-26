@@ -62,12 +62,12 @@ public class GameScreen implements Screen {
         // создается Rectangle для представления ведра
         cats = new Rectangle();
         // центрируем ведро по горизонтали
-        cats.x = 1920 / 2 - 64 / 2;
+        cats.x = 1920 / 2 - 64 * 2 / 2;
         // размещаем на 20 пикселей выше нижней границы экрана.
         cats.y = 20;
 
-        cats.width = 64;
-        cats.height = 64;
+        cats.width = 64 * 2;
+        cats.height = 64 * 2;
 
         // создает массив капель и возрождает первую
         heartdrops = new Array<Heart>();
@@ -128,7 +128,7 @@ public class GameScreen implements Screen {
             Vector3 touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camera.unproject(touchPos);
-            cats.x = touchPos.x - 64 / 2;
+            cats.x = touchPos.x - 64;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
             cats.x -= 200 * Gdx.graphics.getDeltaTime();
@@ -138,8 +138,8 @@ public class GameScreen implements Screen {
         // убедитесь, что ведро остается в пределах экрана
         if (cats.x < 0)
             cats.x = 0;
-        if (cats.x > 1920 - 64)
-            cats.x = 1920 - 64;
+        if (cats.x > 1920 - 64 * 2)
+            cats.x = 1920 - 64 * 2;
 
         // проверка, нужно ли создавать новую каплю
         if (TimeUtils.nanoTime() - lastDropTime > 1000000000)
